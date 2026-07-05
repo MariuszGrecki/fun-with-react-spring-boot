@@ -1,141 +1,188 @@
 # Plan Nauki na 90 Dni
 
-Plan zakłada około 1 godzinę dziennie. Celem jest dojście do swobody w budowaniu aplikacji webowej z Reactem, TypeScriptem, Next.js i Spring Bootem, ale też w debugowaniu, testowaniu i pracy z CI/CD.
+Plan zakłada około 1 godzinę dziennie. Celem jest zbudowanie realnego MVP aplikacji **Product Planner** oraz nabranie biegłości w React, TypeScript, Mantine, Spring Boot, PostgreSQL, testach, debugowaniu i CI/CD.
 
-## Główna Zasada
+## Stack Docelowy
 
-Nie uczymy się przez przepisywanie tutoriala. Każdy dzień ma kończyć się małym, konkretnym efektem:
+```txt
+React + TypeScript + Mantine
+Spring Boot
+PostgreSQL
+Docker Compose
+JUnit / MockMvc / Vitest / React Testing Library / Playwright
+GitHub Actions
+```
 
-1. Rozumiesz jeden temat.
-2. Piszesz samodzielnie mały fragment kodu.
-3. Debugujesz przynajmniej jeden problem albo świadomie sprawdzasz zachowanie aplikacji.
-4. Dopisujesz jedną fiszkę do `doc/fiszki.md`.
+## MVP na 90 Dni
+
+W 90 godzin nie budujemy pełnej wizji z `doc/idea.md`. Budujemy wersję, która pokazuje najważniejszy przepływ:
+
+```txt
+pomysł -> backlog -> scoring -> roadmapa -> sprint -> board -> podsumowanie
+```
+
+Zakres MVP:
+
+1. Dashboard.
+2. Product Inbox.
+3. Backlog.
+4. Scoring `impact / effort / confidence`.
+5. Roadmapa `Now / Next / Later / Done`.
+6. Sprinty.
+7. Sprint Board `To Do / In Progress / Review / Done`.
+8. Spec Builder v1.
+9. Komentarze.
+10. Podstawowa historia aktywności.
+11. Testy backendu i frontendu.
+12. CI/CD.
+
+Poza zakresem MVP:
+
+- AI,
+- rozbudowane role i uprawnienia,
+- integracje,
+- publiczne API,
+- webhooki,
+- zaawansowany reporting,
+- pełny system organizacji i workspace'ów.
+
+## Rytm Dnia
+
+Każdy dzień:
+
+1. 10 minut: temat i wyjaśnienie.
+2. 35 minut: samodzielne kodowanie.
+3. 10 minut: debugowanie albo review.
+4. 5 minut: fiszka w `doc/fiszki.md`.
 
 ## Etapy
 
 | Dni | Etap | Cel |
 | --- | --- | --- |
-| 1-10 | Fundamenty projektu | Zrozumieć działający przepływ: frontend -> API -> backend -> baza. |
-| 11-20 | Spring Boot REST API | Kontrolery, serwisy, repozytoria, walidacja, błędy. |
-| 21-30 | React i TypeScript | Komponenty, stan, propsy, typowanie danych i requestów. |
-| 31-40 | Migracja do Next.js | Routing, struktura Next.js, server/client components na rozsądnym poziomie. |
-| 41-50 | Funkcje aplikacji | Notatki, sesje nauki, relacje w bazie, filtrowanie. |
-| 51-60 | Debugowanie i refaktor | Network tab, logi backendu, stack trace, refaktor frontu i backendu. |
-| 61-72 | Testy | Backend, frontend, integracja i podstawowe E2E. |
-| 73-82 | CI/CD | GitHub Actions, buildy, testy automatyczne, Docker image. |
-| 83-90 | Finalizacja | Stabilizacja, dokumentacja, demo i przygotowanie projektu do pokazania. |
+| 1-10 | Pivot i fundamenty | Przestawić projekt na Product Planner i zrozumieć architekturę. |
+| 11-20 | Backend MVP | Model danych, REST API, walidacja i błędy. |
+| 21-30 | React + TypeScript | Przebudowa frontendu, typowanie i klient API. |
+| 31-40 | Mantine UI | Layout aplikacji, dashboard, formularze, tabele i modale. |
+| 41-50 | Backlog i scoring | Priorytetyzacja, filtry, sortowanie, statusy. |
+| 51-60 | Roadmapa i sprinty | Roadmap board, sprint board, drag and drop. |
+| 61-70 | Spec Builder i aktywność | Specyfikacje, komentarze, timeline i stabilizacja przepływu. |
+| 71-80 | Testy | Testy backendu, frontendu i pierwszy E2E. |
+| 81-90 | CI/CD i finalizacja | GitHub Actions, dokumentacja, polish i demo. |
 
 ## Plan Dzienny
 
 | Dzień | Temat | Zadanie |
 | --- | --- | --- |
-| 1 | Mapa aplikacji | Przejdź przez aktualny przepływ `App.jsx -> api.js -> TopicController -> TopicService -> TopicRepository`. |
-| 2 | Docker Compose | Zrozum usługi `frontend`, `backend`, `db`, porty i zmienne środowiskowe. |
-| 3 | HTTP i REST | Przetestuj `GET`, `POST`, `PATCH`, `DELETE` przez UI i `curl`. |
-| 4 | Debugowanie requestów | Użyj Network tab i logów backendu do sprawdzenia jednego requestu od początku do końca. |
-| 5 | React state | Przećwicz `useState` na formularzu dodawania tematu. |
-| 6 | React effect | Zrozum `useEffect` i moment pobierania danych z API. |
-| 7 | Spring Controller | Omów adnotacje `@RestController`, `@RequestMapping`, `@GetMapping`, `@PostMapping`. |
-| 8 | Service layer | Zrozum, dlaczego logika nie powinna siedzieć bezpośrednio w kontrolerze. |
-| 9 | JPA Repository | Przećwicz `JpaRepository`, `findAll`, `save`, `deleteById`. |
-| 10 | Review fundamentów | Opowiedz własnymi słowami, co dzieje się po kliknięciu "Dodaj". |
-| 11 | DTO requestu | Rozbuduj request tworzenia tematu i zrozum rekordy w Javie. |
-| 12 | Walidacja backendu | Dodaj lub popraw walidację pustego tytułu. |
-| 13 | Obsługa błędów | Dodaj spójniejszy format błędu dla 400 i 404. |
-| 14 | Enum statusu | Przećwicz statusy `TODO`, `IN_PROGRESS`, `DONE`. |
-| 15 | Update tematu | Dodaj endpoint do zmiany tytułu tematu. |
-| 16 | Filtrowanie API | Dodaj filtrowanie tematów po statusie. |
-| 17 | Wyszukiwanie API | Dodaj wyszukiwanie po fragmencie tytułu. |
-| 18 | Paginacja | Dodaj prostą paginację na backendzie. |
-| 19 | Debug SQL | Włącz logowanie SQL i zobacz zapytania generowane przez JPA. |
-| 20 | Review backendu | Przejrzyj kontroler, serwis, repozytorium i wyjątki. |
-| 21 | TypeScript start | Wprowadź podstawy typów: `string`, `number`, union types, typ obiektu. |
-| 22 | Typ danych z API | Zdefiniuj typ `Topic` po stronie frontendu. |
-| 23 | Typowanie funkcji API | Nadaj typy funkcjom pobierającym i zapisującym dane. |
-| 24 | Typowanie propsów | Rozbij UI na komponenty i typuj propsy. |
-| 25 | Typowanie eventów | Przećwicz typowanie `onChange`, `onSubmit`, `MouseEvent`. |
-| 26 | Union type dla statusu | Zdefiniuj typ statusu tematu jako union albo enum. |
-| 27 | Type narrowing | Obsłuż sytuacje, gdy dane mogą być puste albo błędne. |
-| 28 | Błędy TypeScriptu | Celowo popsuj typ i naucz się czytać komunikat kompilatora. |
-| 29 | Refaktor frontu | Uporządkuj komponenty z użyciem typów. |
-| 30 | Review TypeScript | Opisz, gdzie TS realnie pomógł uniknąć błędu. |
-| 31 | Next.js: po co | Zrozum różnicę między Vite React a Next.js. |
-| 32 | Struktura Next.js | Poznaj `app`, `page.tsx`, `layout.tsx`, routing plikowy. |
-| 33 | Migracja startowa | Przygotuj plan migracji frontendu z Vite do Next.js. |
-| 34 | Pierwsza strona Next | Utwórz bazową stronę listy tematów w Next.js. |
-| 35 | Client components | Zrozum `"use client"` i kiedy komponent potrzebuje stanu. |
-| 36 | Server components | Zrozum, kiedy komponent może zostać server component. |
-| 37 | Fetch w Next.js | Porównaj pobieranie danych po stronie klienta i serwera. |
-| 38 | Routing | Dodaj stronę szczegółów tematu. |
-| 39 | Formularze w Next.js | Przenieś formularz dodawania tematu do Next.js. |
-| 40 | Review migracji | Sprawdź, czy aplikacja działa po przejściu na Next.js. |
-| 41 | Model notatek | Zaprojektuj encję `Note` powiązaną z tematem. |
-| 42 | Backend notatek | Dodaj endpointy listowania i tworzenia notatek. |
-| 43 | Frontend notatek | Wyświetl notatki przypisane do tematu. |
-| 44 | Walidacja notatek | Obsłuż pustą treść i zbyt długie notatki. |
-| 45 | Model sesji nauki | Zaprojektuj encję `StudySession`. |
-| 46 | Backend sesji | Dodaj tworzenie i listowanie sesji nauki. |
-| 47 | Frontend sesji | Dodaj widok ostatnich sesji. |
-| 48 | Relacje JPA | Zrozum relacje `Topic -> Note` i `Topic -> StudySession`. |
-| 49 | Filtrowanie i sortowanie | Dodaj filtrowanie tematów, notatek albo sesji. |
-| 50 | Review funkcji | Przejdź pełny scenariusz: temat, notatka, sesja, status. |
-| 51 | Debug backendu | Naucz się czytać stack trace Spring Boota. |
-| 52 | Debug frontu | Naucz się sprawdzać state, propsy i requesty w przeglądarce. |
-| 53 | Debug Dockera | Przećwicz `docker compose ps`, `logs`, `down`, `up`. |
-| 54 | Problem CORS | Zrozum CORS i sprawdź konfigurację backendu. |
-| 55 | Problem z bazą | Celowo zatrzymaj bazę i zobacz zachowanie backendu. |
-| 56 | Refaktor kontrolera | Uporządkuj kontrolery i odpowiedzi API. |
-| 57 | Refaktor serwisu | Uprość logikę serwisów i nazwy metod. |
-| 58 | Refaktor React/Next | Wyciągnij większe fragmenty UI do komponentów. |
-| 59 | Refaktor API clienta | Uporządkuj funkcje komunikacji z backendem. |
-| 60 | Review debugowania | Spisz najczęstsze błędy i sposób diagnozy. |
-| 61 | Testy jednostkowe backendu | Dodaj test serwisu z mockowanym repozytorium. |
-| 62 | Testy kontrolera | Dodaj test `MockMvc` dla listy tematów. |
-| 63 | Test walidacji | Przetestuj odpowiedź 400 dla pustych danych. |
-| 64 | Test repozytorium | Dodaj test JPA dla zapisu i odczytu encji. |
-| 65 | Test integracyjny | Przetestuj przepływ API z kontekstem Spring Boot. |
-| 66 | Testy frontendu | Dodaj React Testing Library do sprawdzenia renderowania listy. |
-| 67 | Test formularza | Przetestuj wpisanie danych i submit formularza. |
-| 68 | Mockowanie API | Zamockuj requesty frontendu w testach. |
-| 69 | Test błędu UI | Sprawdź, czy błąd API pokazuje komunikat użytkownikowi. |
-| 70 | E2E wstęp | Dodaj prosty scenariusz E2E: wejście, dodanie tematu, zmiana statusu. |
-| 71 | Pokrycie ryzyka | Wybierz najważniejsze ścieżki do testowania, nie gonimy samych procentów. |
-| 72 | Review testów | Uporządkuj nazwy testów i dane testowe. |
-| 73 | GitHub Actions start | Dodaj workflow uruchamiający testy backendu. |
-| 74 | CI frontendu | Dodaj workflow uruchamiający build/test frontendu. |
-| 75 | Jeden pipeline | Połącz backend i frontend w jeden pipeline pull requesta. |
-| 76 | Docker build w CI | Dodaj sprawdzanie budowania obrazów Docker. |
-| 77 | Cache zależności | Dodaj cache Maven i npm/pnpm. |
-| 78 | Quality gate | Ustal, że testy i build muszą przejść przed merge. |
-| 79 | Zmienne środowiskowe | Uporządkuj konfigurację przez env vars. |
-| 80 | Sekrety | Zrozum, czego nie trzymać w repozytorium. |
-| 81 | Smoke test | Dodaj prosty test dostępności API po starcie. |
-| 82 | Review CI/CD | Celowo zepsuj build i zdebuguj pipeline. |
-| 83 | Dokumentacja API | Dopisz listę endpointów i przykładowe requesty. |
-| 84 | Dokumentacja uruchomienia | Upewnij się, że README pozwala odpalić projekt od zera. |
-| 85 | Stabilizacja błędów | Sprawdź przypadki: 400, 404, brak backendu, brak bazy. |
-| 86 | Poprawa UX bez stylowania | Uporządkuj komunikaty, loadingi i stany puste. |
-| 87 | Finalny refaktor | Usuń martwy kod, powtórzenia i zbędne logi. |
-| 88 | Demo aplikacji | Przygotuj scenariusz pokazania aplikacji komuś innemu. |
-| 89 | Podsumowanie techniczne | Spisz decyzje: Next.js, TypeScript, Spring Boot, PostgreSQL, Docker, CI. |
-| 90 | Review końcowe | Przejdź projekt jak na rozmowie technicznej i przygotuj listę dalszych kroków. |
-
-## Testy i CI/CD w Planie
-
-Testy i CI/CD nie są dodatkiem na końcu. Wchodzą w plan jako normalna część pracy:
-
-- backend: od dnia 61,
-- frontend: od dnia 66,
-- E2E: od dnia 70,
-- CI/CD: od dnia 73,
-- smoke test i debug pipeline: dni 81-82.
+| 1 | Product Planner MVP | Przejdź przez `doc/idea.md` i zaznacz, co wchodzi do MVP, a co odkładamy. |
+| 2 | Model domeny | Zaprojektuj encje: `Idea`, `BacklogItem`, `RoadmapItem`, `Sprint`, `SprintTask`. |
+| 3 | Architektura backendu | Ustal pakiety backendu: inbox, backlog, roadmap, sprint, shared. |
+| 4 | Architektura frontendu | Ustal strukturę React: pages, components, api, types, hooks. |
+| 5 | Docker i środowisko | Sprawdź Compose, porty, zmienne środowiskowe i logi. |
+| 6 | REST flow | Przećwicz request od frontendu do Spring Boota i bazy. |
+| 7 | Debugowanie startowe | Celowo wywołaj błąd API i odczytaj go w Network tab oraz logach backendu. |
+| 8 | Decyzja o migracji frontu | Przygotuj plan przejścia obecnego frontu na TypeScript i Mantine. |
+| 9 | README i konwencje | Ustal nazwy statusów, typów i endpointów. |
+| 10 | Review fundamentów | Opowiedz przepływ danych własnymi słowami. |
+| 11 | Encja Idea | Dodaj backendowy model pomysłu z tytułem, opisem, typem i statusem. |
+| 12 | Repozytorium Idea | Dodaj repozytorium i serwis dla Product Inbox. |
+| 13 | Kontroler Inbox | Dodaj endpointy listowania i tworzenia pomysłów. |
+| 14 | Walidacja | Dodaj walidację tytułu, typu i opisu. |
+| 15 | Obsługa błędów | Dodaj spójny format błędów API. |
+| 16 | Update statusu | Dodaj zmianę statusu pomysłu. |
+| 17 | Typy wpisów | Dodaj typy: feature, bug, improvement, tech debt, research. |
+| 18 | Filtrowanie backendu | Dodaj filtrowanie po statusie i typie. |
+| 19 | Sortowanie backendu | Dodaj sortowanie po dacie utworzenia i priorytecie. |
+| 20 | Review backendu | Sprawdź endpointy przez `curl` i logi. |
+| 21 | TypeScript start | Przebuduj frontend na TypeScript albo utwórz równoległy szkielet TS. |
+| 22 | Typ Idea | Zdefiniuj typy `Idea`, `IdeaType`, `IdeaStatus`. |
+| 23 | API client | Napisz typowane funkcje do pobierania i tworzenia pomysłów. |
+| 24 | Lista pomysłów | Wyświetl Product Inbox z danych z backendu. |
+| 25 | Formularz pomysłu | Dodaj formularz tworzenia pomysłu w TypeScript. |
+| 26 | Typowanie eventów | Przećwicz typy formularzy, submitu i selectów. |
+| 27 | Error handling | Pokaż błąd API w UI w kontrolowany sposób. |
+| 28 | Loading states | Dodaj loading dla pobierania i zapisu. |
+| 29 | Refaktor frontu | Wyciągnij komponenty: InboxList, IdeaForm, StatusBadge. |
+| 30 | Review TypeScript | Spisz trzy sytuacje, gdzie TypeScript pomógł. |
+| 31 | Mantine setup | Dodaj Mantine Provider, theme i podstawowy layout. |
+| 32 | App shell | Zbuduj layout z sidebar, header i główną treścią. |
+| 33 | Dashboard v1 | Dodaj kafle: total ideas, backlog, active sprint, done. |
+| 34 | Mantine form | Przenieś formularz pomysłu na komponenty Mantine. |
+| 35 | Notifications | Dodaj powiadomienia po sukcesie i błędzie. |
+| 36 | Modal | Dodaj modal do tworzenia nowego pomysłu. |
+| 37 | Table | Wyświetl inbox w Mantine Table albo prostych kartach. |
+| 38 | Select filters | Dodaj filtry statusu i typu z Mantine Select. |
+| 39 | Empty states | Dodaj stany puste dla list i filtrów. |
+| 40 | Review UI | Sprawdź, czy UI jest czytelny bez ręcznego stylowania. |
+| 41 | Backlog model | Dodaj backendowy model backlog item albo status przeniesienia do backlogu. |
+| 42 | Move to backlog | Dodaj akcję przeniesienia pomysłu do backlogu. |
+| 43 | Backlog view | Dodaj widok backlogu we frontendzie. |
+| 44 | Scoring fields | Dodaj pola `impact`, `effort`, `confidence`. |
+| 45 | Score calculation | Wylicz prosty score i pokaż go w UI. |
+| 46 | Score sorting | Sortuj backlog po score. |
+| 47 | Priority badges | Dodaj wizualne oznaczenia low, medium, high. |
+| 48 | Backlog filters | Dodaj filtrowanie backlogu po typie i priorytecie. |
+| 49 | Decision note v1 | Dodaj proste pole "dlaczego to robimy". |
+| 50 | Review scoringu | Sprawdź kilka przykładów i oceń, czy score ma sens. |
+| 51 | Roadmap model | Dodaj status roadmapy: Now, Next, Later, Done. |
+| 52 | Roadmap endpoint | Dodaj endpoint zmiany kolumny roadmapy. |
+| 53 | Roadmap UI | Dodaj widok kolumn roadmapy. |
+| 54 | Roadmap move | Dodaj zmianę kolumny bez drag and drop, np. przez select. |
+| 55 | Sprint model | Dodaj sprint: nazwa, cel, start, koniec, status. |
+| 56 | Sprint API | Dodaj tworzenie i listowanie sprintów. |
+| 57 | Sprint UI | Dodaj widok aktywnego sprintu. |
+| 58 | Sprint tasks | Dodaj zadania sprintu powiązane z backlog itemem. |
+| 59 | Sprint Board | Dodaj kolumny To Do, In Progress, Review, Done. |
+| 60 | Review roadmapy i sprintów | Przejdź flow od backlogu do sprint boarda. |
+| 61 | Drag and drop | Dodaj `@dnd-kit` dla sprint boarda albo roadmapy. |
+| 62 | Persist order | Zapisuj status po przeciągnięciu zadania. |
+| 63 | Spec model | Dodaj specyfikację: problem, goal, user story, acceptance criteria. |
+| 64 | Spec Builder UI | Dodaj formularz specyfikacji dla backlog itemu. |
+| 65 | Comments model | Dodaj komentarze do pomysłu albo backlog itemu. |
+| 66 | Comments UI | Dodaj listę i formularz komentarzy. |
+| 67 | Activity model | Zapisuj zdarzenia: zmiana statusu, scoringu, roadmapy. |
+| 68 | Activity timeline | Wyświetl prostą historię aktywności. |
+| 69 | Stabilizacja MVP | Przejdź cały flow i zapisz błędy. |
+| 70 | Review funkcjonalny | Zdecyduj, co wyciąć przed testami, jeśli zakres jest za duży. |
+| 71 | Test serwisu | Dodaj test jednostkowy backendowego serwisu inboxa. |
+| 72 | Test kontrolera | Dodaj test `MockMvc` dla tworzenia pomysłu. |
+| 73 | Test walidacji | Przetestuj 400 dla pustego tytułu. |
+| 74 | Test repozytorium | Dodaj test zapisu encji w JPA. |
+| 75 | Test score | Przetestuj wyliczanie score. |
+| 76 | Vitest setup | Dodaj Vitest i React Testing Library. |
+| 77 | Test komponentu | Przetestuj renderowanie pustego inboxa. |
+| 78 | Test formularza | Przetestuj wpisanie tytułu i submit. |
+| 79 | Mock API | Zamockuj klienta API w teście frontendu. |
+| 80 | Playwright smoke | Dodaj prosty test E2E: otwarcie aplikacji i widoczny dashboard. |
+| 81 | GitHub Actions backend | Dodaj workflow dla build/test backendu. |
+| 82 | GitHub Actions frontend | Dodaj workflow dla build/test frontendu. |
+| 83 | Docker build CI | Dodaj sprawdzanie budowania obrazów Docker. |
+| 84 | Cache | Dodaj cache Maven i npm. |
+| 85 | Quality gate | Ustal, że pipeline musi przejść przed merge. |
+| 86 | README final | Uzupełnij README o endpointy, uruchomienie i flow MVP. |
+| 87 | Debug pipeline | Celowo zepsuj test i naucz się czytać błąd w CI. |
+| 88 | Final polish | Popraw nazwy, komunikaty, stany puste i małe niespójności. |
+| 89 | Demo script | Przygotuj scenariusz pokazania aplikacji. |
+| 90 | Review końcowe | Przejdź projekt jak na rozmowie technicznej i spisz dalsze kroki. |
 
 ## Fiszka Po Każdym Dniu
 
-Na koniec dnia dopisujemy jedną fiszkę do `doc/fiszki.md`. Fiszka ma dotyczyć mechanizmu, frameworka albo narzędzia, na przykład:
+Po każdym dniu dopisujemy jedną fiszkę do `doc/fiszki.md`.
 
-- czym różni się server component od client component w Next.js,
+Fiszka powinna dotyczyć mechanizmu, a nie tylko konkretnego fragmentu aplikacji. Przykłady:
+
+- czym różni się controlled input od uncontrolled input w React,
 - po co typować odpowiedź API w TypeScript,
+- czym różni się kontroler od serwisu w Spring Boot,
+- jak działa walidacja requestu przez `@Valid`,
 - czym różni się test jednostkowy od integracyjnego,
-- jak czytać status HTTP 400, 404 i 500,
-- po co w CI uruchamiać testy przed buildem obrazu Docker.
+- po co pipeline CI uruchamia testy przed buildem Docker image.
+
+## Zasady Mentoringu
+
+W trakcie pracy:
+
+1. Najpierw omawiamy temat.
+2. Potem Ty piszesz kod.
+3. Ja robię review, wyjaśniam błędy i proponuję poprawki.
+4. Nie przeskakujemy do kolejnego modułu, jeśli obecny flow nie działa.
+5. Debugowanie traktujemy jako część nauki, nie jako przerwę od nauki.

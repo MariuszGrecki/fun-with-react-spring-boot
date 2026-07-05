@@ -1,41 +1,63 @@
-# Learning Tracker
+# Product Planner
 
-**Learning Tracker** to aplikacja do organizowania nauki programowania. Jej zadaniem jest pomagać w planowaniu tematów, zapisywaniu sesji nauki, śledzeniu postępu, tworzeniu notatek oraz budowaniu własnej bazy fiszek.
+**Product Planner** to aplikacja do planowania rozwoju produktu. Pomaga małym zespołom i founderom zebrać pomysły w jednym miejscu, ocenić ich priorytet, zaplanować roadmapę i zamienić decyzje produktowe w konkretne sprinty.
 
-Docelowo aplikacja ma odpowiadać na proste pytania:
+Główne pytanie, na które odpowiada aplikacja:
 
-- czego aktualnie się uczę,
-- które tematy są rozpoczęte, zakończone albo odłożone,
-- ile czasu poświęcam na naukę,
-- jakie notatki i fiszki powstały po danym temacie,
-- które obszary wymagają powtórki.
+> Co powinniśmy zbudować dalej i dlaczego?
 
-## Funkcje Aplikacji
+## Cel Produktu
 
-| Obszar | Opis |
+Product Planner nie jest klasycznym task managerem. Aplikacja skupia się na decyzjach produktowych przed rozpoczęciem pracy:
+
+- jaki problem rozwiązujemy,
+- dla kogo jest ważny,
+- jaki ma wpływ na produkt,
+- ile wymaga pracy,
+- czy pasuje do aktualnego celu produktu,
+- dlaczego trafia do roadmapy albo sprintu.
+
+Docelowy przepływ:
+
+```txt
+pomysł -> analiza -> priorytet -> roadmapa -> sprint -> realizacja -> podsumowanie
+```
+
+## MVP
+
+Pierwsza wersja ma być mała, ale użyteczna. Zakres MVP:
+
+| Moduł | Zakres |
 | --- | --- |
-| Tematy nauki | Dodawanie tematów, zmiana statusu, filtrowanie i wyszukiwanie. |
-| Sesje nauki | Zapisywanie dnia, czasu pracy, celu i krótkiego podsumowania. |
-| Notatki | Przechowywanie notatek przypisanych do tematów. |
-| Fiszki | Tworzenie pytań i odpowiedzi do powtórek. |
-| Statystyki | Podsumowanie postępu, czasu nauki i ukończonych tematów. |
-| Konto użytkownika | Docelowo logowanie i dane przypisane do konkretnego użytkownika. |
+| Dashboard | Najważniejsze liczby: pomysły w inboxie, top priorytety, aktywny sprint. |
+| Product Inbox | Dodawanie pomysłów, bugów, usprawnień i długu technicznego. |
+| Backlog | Przenoszenie wybranych pomysłów do backlogu i nadawanie statusu. |
+| Scoring | Ocena `impact`, `effort`, `confidence` i wyliczony priorytet. |
+| Roadmapa | Widok kolumn `Now`, `Next`, `Later`, `Done`. |
+| Sprinty | Tworzenie sprintu, cel sprintu, daty i lista zadań. |
+| Sprint Board | Kolumny `To Do`, `In Progress`, `Review`, `Done`. |
+| Spec Builder | Prosta specyfikacja: problem, cel, user story, acceptance criteria. |
+| Komentarze | Krótkie komentarze przy pomysłach i zadaniach. |
+| Activity Timeline | Podstawowa historia zmian statusów i priorytetów. |
+
+Po MVP można dodać AI, integracje, role, publiczne API i bardziej rozbudowane raporty.
 
 ## Technologie
 
-| Warstwa | Technologie |
+| Warstwa | Technologia |
 | --- | --- |
-| Frontend docelowy | React, TypeScript, Next.js |
-| Frontend obecny | React, Vite, JavaScript |
+| Frontend | React, TypeScript, Mantine |
 | Backend | Java, Spring Boot, Spring Web, Spring Data JPA |
 | Baza danych | PostgreSQL |
-| Testy | JUnit, Spring Boot Test, React Testing Library, Playwright albo Cypress |
-| CI/CD | GitHub Actions, Docker build, automatyczne testy |
+| UI | Mantine components, Mantine forms, Mantine notifications |
+| Drag and drop | `@dnd-kit` |
+| Testy backendu | JUnit, Spring Boot Test, MockMvc |
+| Testy frontendu | Vitest, React Testing Library |
+| E2E | Playwright |
+| CI/CD | GitHub Actions |
 | Uruchamianie lokalne | Docker Compose |
 
-> Frontend został rozpoczęty jako prosty React + Vite. W planie nauki jest świadoma migracja do Next.js i TypeScriptu, żeby najpierw zrozumieć podstawowy przepływ aplikacji, a potem przejść do bardziej produkcyjnego podejścia.
-
-## Uruchomienie
+## Uruchomienie Lokalne
 
 ```bash
 docker compose up --build -d
@@ -46,39 +68,43 @@ Po starcie:
 | Usługa | Adres |
 | --- | --- |
 | Frontend | http://localhost:5173 |
-| Backend API | http://localhost:8081/api/topics |
+| Backend API | http://localhost:8081 |
 | PostgreSQL | localhost:5432 |
 
-Zatrzymanie aplikacji:
+Zatrzymanie:
 
 ```bash
 docker compose down
 ```
 
-Podgląd logów:
+Logi:
 
 ```bash
 docker compose logs -f backend
 docker compose logs -f frontend
 ```
 
-## Aktualny Stan
+## Kierunek Implementacji
 
-Pierwsza wersja obsługuje podstawowy przepływ pracy z tematami nauki:
+Projekt będzie rozwijany małymi krokami:
 
-1. Pobranie listy tematów z backendu.
-2. Dodanie nowego tematu.
-3. Zmiana statusu tematu.
-4. Usunięcie tematu.
+1. Ustalenie modelu danych dla Product Plannera.
+2. Przebudowa frontendu na React + TypeScript + Mantine.
+3. Implementacja Product Inbox.
+4. Dodanie backlogu i scoringu.
+5. Dodanie roadmapy i sprintów.
+6. Dodanie testów.
+7. Dodanie CI/CD.
 
-Ten przepływ przechodzi przez całą aplikację: frontend wysyła request HTTP, Spring Boot obsługuje endpoint, serwis wykonuje logikę, repozytorium zapisuje dane w PostgreSQL.
+Priorytetem jest zrozumiały kod, debugowanie i realny przepływ danych przez całą aplikację.
 
 ## Dokumentacja
 
 | Plik | Opis |
 | --- | --- |
-| [doc/plan-nauki-90-dni.md](doc/plan-nauki-90-dni.md) | Plan nauki React, TypeScript, Next.js, Spring Boot, testów i CI/CD. |
-| [doc/fiszki.md](doc/fiszki.md) | Miejsce na fiszki tworzone po kolejnych dniach nauki. |
+| [doc/idea.md](doc/idea.md) | Pełniejszy opis koncepcji Product Plannera. |
+| [doc/plan-nauki-90-dni.md](doc/plan-nauki-90-dni.md) | Plan nauki i budowy MVP na 90 dni. |
+| [doc/fiszki.md](doc/fiszki.md) | Fiszki tworzone po kolejnych dniach pracy. |
 
 ## Zasada Pracy
 
@@ -87,4 +113,4 @@ Każdy dzień powinien kończyć się:
 1. Małą zmianą w aplikacji albo świadomym ćwiczeniem debugowania.
 2. Krótkim review kodu.
 3. Jedną fiszką dopisaną do `doc/fiszki.md`.
-4. Notatką, jaki błąd lub mechanizm udało się zrozumieć.
+4. Notatką, jaki mechanizm lub błąd udało się zrozumieć.
