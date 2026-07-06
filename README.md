@@ -103,6 +103,7 @@ Priorytetem jest zrozumiały kod, debugowanie i realny przepływ danych przez ca
 | Plik | Opis |
 | --- | --- |
 | [doc/idea.md](doc/idea.md) | Pełniejszy opis koncepcji Product Plannera. |
+| [doc/mvp.md](doc/mvp.md) | Przycięty zakres MVP, estymacje i kryteria ukończenia. |
 | [doc/plan-nauki-90-dni.md](doc/plan-nauki-90-dni.md) | Plan nauki i budowy MVP na 90 dni. |
 | [doc/fiszki.md](doc/fiszki.md) | Fiszki tworzone po kolejnych dniach pracy. |
 

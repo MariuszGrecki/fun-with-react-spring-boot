@@ -50,4 +50,4 @@ WAŻNE - Formatowanie tekstu:
   {
     "explanation": "Aby użyć tego podejścia:\n1) Zainstaluj zależności\n2) Skonfiguruj plik\n3) Uruchom komendę\n\nPrzykład kodu:\n```java\npublic class Example {\n    // kod\n}\n```"
   }
-```
+``
