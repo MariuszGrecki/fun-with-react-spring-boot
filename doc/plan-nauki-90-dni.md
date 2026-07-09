@@ -74,8 +74,8 @@ Każdy dzień:
 | Status | Dzień | Temat | Zadanie |
 | --- | --- | --- | --- |
 | [x] | 1 | Product Planner MVP | Przejdź przez `doc/idea.md` i zaznacz, co wchodzi do MVP, a co odkładamy. |
-| [ ] | 2 | Model domeny | Zaprojektuj encje: `Idea`, `BacklogItem`, `RoadmapItem`, `Sprint`, `SprintTask`. |
-| [ ] | 3 | Architektura backendu | Ustal pakiety backendu: inbox, backlog, roadmap, sprint, shared. |
+| [x] | 2 | Model domeny | Zaprojektuj encje: `Idea`, `BacklogItem`, `RoadmapItem`, `Sprint`, `SprintTask`. |
+| [x] | 3 | Architektura backendu | Ustal moduły backendu: productitem, sprint, shared, config oraz komunikację między modułami przez facade. |
 | [ ] | 4 | Architektura frontendu | Ustal strukturę React: pages, components, api, types, hooks. |
 | [ ] | 5 | Docker i środowisko | Sprawdź Compose, porty, zmienne środowiskowe i logi. |
 | [ ] | 6 | REST flow | Przećwicz request od frontendu do Spring Boota i bazy. |

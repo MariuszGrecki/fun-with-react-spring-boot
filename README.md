@@ -104,6 +104,8 @@ Priorytetem jest zrozumiały kod, debugowanie i realny przepływ danych przez ca
 | --- | --- |
 | [doc/idea.md](doc/idea.md) | Pełniejszy opis koncepcji Product Plannera. |
 | [doc/mvp.md](doc/mvp.md) | Przycięty zakres MVP, estymacje i kryteria ukończenia. |
+| [doc/domain-model.md](doc/domain-model.md) | Model domeny, tabele, relacje, statusy i decyzje MVP. |
+| [doc/backend-architecture.md](doc/backend-architecture.md) | Architektura backendu, moduły i zasady komunikacji między modułami. |
 | [doc/plan-nauki-90-dni.md](doc/plan-nauki-90-dni.md) | Plan nauki i budowy MVP na 90 dni. |
 | [doc/fiszki.md](doc/fiszki.md) | Fiszki tworzone po kolejnych dniach pracy. |
 
