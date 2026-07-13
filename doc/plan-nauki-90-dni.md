@@ -77,7 +77,7 @@ Każdy dzień:
 | [x] | 2 | Model domeny | Zaprojektuj encje: `Idea`, `BacklogItem`, `RoadmapItem`, `Sprint`, `SprintTask`. |
 | [x] | 3 | Architektura backendu | Ustal moduły backendu: productitem, sprint, shared, config oraz komunikację między modułami przez facade. |
 | [x] | 4 | Architektura frontendu | Ustal strukturę React + TypeScript + Mantine: app, api, features, shared oraz zasady komunikacji między featureami. |
-| [ ] | 5 | Docker i środowisko | Sprawdź Compose, porty, zmienne środowiskowe i logi. |
+| [x] | 5 | Docker i środowisko | Sprawdź Compose, porty, zmienne środowiskowe i logi. |
 | [ ] | 6 | REST flow | Przećwicz request od frontendu do Spring Boota i bazy. |
 | [ ] | 7 | Debugowanie startowe | Celowo wywołaj błąd API i odczytaj go w Network tab oraz logach backendu. |
 | [ ] | 8 | Decyzja o migracji frontu | Przygotuj plan przejścia obecnego frontu na TypeScript i Mantine. |

@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: learning_user
       POSTGRES_PASSWORD: learning_password
     ports:
-      - "5432:5432"
+      - "5133:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
