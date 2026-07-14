@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createTopic, deleteTopic, getTopics, updateTopicStatus } from './api';
 import './styles.css';
 
@@ -93,6 +93,12 @@ export default function App() {
       {!isLoading && (
         <section>
           <h2>Tematy</h2>
+          <button
+            onClick={loadTopics}
+            disabled={isLoading}
+            >
+              {isLoading ? "Ładowanie" : "Odśwież tematy"}
+          </button>
 
           {topics.length === 0 ? (
             <p>Brak tematów. Dodaj pierwszy temat nauki.</p>
