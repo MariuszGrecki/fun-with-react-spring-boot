@@ -206,7 +206,6 @@ Na początku możemy trzymać facade jako zwykłą klasę Spring:
 public class ProductItemFacade {
 }
 ```
-
 Nie musimy od razu robić interfejsu. Interfejs dodamy dopiero, jeśli pojawi się realna potrzeba.
 
 ## Zasada zależności
