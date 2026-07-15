@@ -68,7 +68,7 @@ Po starcie:
 | Usługa | Adres |
 | --- | --- |
 | Frontend | http://localhost:5173 |
-| Backend API | http://localhost:8081 |
+| Backend API | http://localhost:18081 |
 | PostgreSQL | localhost:5432 |
 
 Zatrzymanie:
