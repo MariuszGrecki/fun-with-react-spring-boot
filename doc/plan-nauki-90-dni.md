@@ -79,10 +79,10 @@ Każdy dzień:
 | [x] | 4 | Architektura frontendu | Ustal strukturę React + TypeScript + Mantine: app, api, features, shared oraz zasady komunikacji między featureami. |
 | [x] | 5 | Docker i środowisko | Sprawdź Compose, porty, zmienne środowiskowe i logi. |
 | [x] | 6 | REST flow | Przećwicz request od frontendu do Spring Boota i bazy. |
-| [ ] | 7 | Debugowanie startowe | Celowo wywołaj błąd API i odczytaj go w Network tab oraz logach backendu. |
-| [ ] | 8 | Decyzja o migracji frontu | Przygotuj plan przejścia obecnego frontu na TypeScript i Mantine. |
-| [ ] | 9 | README i konwencje | Ustal nazwy statusów, typów i endpointów. |
-| [ ] | 10 | Review fundamentów | Opowiedz przepływ danych własnymi słowami. |
+| [x] | 7 | Debugowanie startowe | Celowo wywołaj błąd API i odczytaj go w Network tab oraz logach backendu. |
+| [x] | 8 | Decyzja o migracji frontu | Przygotuj plan przejścia obecnego frontu na TypeScript i Mantine. |
+| [x] | 9 | README i konwencje | Ustal nazwy statusów, typów i endpointów. |
+| [x] | 10 | Review fundamentów | Opowiedz przepływ danych własnymi słowami. |
 | [ ] | 11 | Encja Idea | Dodaj backendowy model pomysłu z tytułem, opisem, typem i statusem. |
 | [ ] | 12 | Repozytorium Idea | Dodaj repozytorium i serwis dla Product Inbox. |
 | [ ] | 13 | Kontroler Inbox | Dodaj endpointy listowania i tworzenia pomysłów. |
