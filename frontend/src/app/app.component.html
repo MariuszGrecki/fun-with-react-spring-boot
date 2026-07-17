@@ -1,0 +1,27 @@
+<main class="app-shell">
+  <header class="topbar">
+    <a class="brand" routerLink="/">{{ title }}</a>
+    <span class="status">Angular + Spring Boot</span>
+  </header>
+
+  <section class="hero" aria-labelledby="page-title">
+    <p class="eyebrow">MVP</p>
+    <h1 id="page-title">Zamieniaj pomysły w świadome decyzje produktowe.</h1>
+    <p class="lead">
+      Frontend Angular działa w Dockerze. Następnie zbudujemy Product Inbox
+      i podłączymy go do API Spring Boot.
+    </p>
+    <a class="primary-action" href="#next-step">Rozpocznij Product Inbox</a>
+  </section>
+
+  <section id="next-step" class="next-step" aria-labelledby="next-step-title">
+    <h2 id="next-step-title">Najbliższy krok</h2>
+    <p>
+      Utworzymy model <code>ProductItem</code>, serwis HTTP i listę inboxa.
+      Backend nadal zawiera wcześniejszy moduł Topic, więc zmigrujemy go
+      najpierw do wspólnego kontraktu <code>/api/product-items</code>.
+    </p>
+  </section>
+</main>
+
+<router-outlet />

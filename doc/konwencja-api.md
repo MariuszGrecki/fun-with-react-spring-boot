@@ -15,22 +15,22 @@ TECH_DEBT
 RESEARCH
 ```
 
-## Statusy pomysłów
+## Etapy Product Itemu
 
-NEW
-IN_REVIEW
+CONCEPT
 BACKLOG
-REJECTED
+ROADMAP
+ARCHIVED
 
 ## Endpointy
-GET    /api/ideas
-POST   /api/ideas
-GET    /api/ideas/{id}
-PATCH  /api/ideas/{id}/status
-GET /api/ideas?status=NEW&type=FEATURE
+GET    /api/product-items
+POST   /api/product-items
+GET    /api/product-items/{id}
+PATCH  /api/product-items/{id}/stage
+GET    /api/product-items?stage=CONCEPT&type=FEATURE
 
 Nazwy danych
 JSON używa camelCase, np. createdAt.
-Endpointy używają rzeczowników w liczbie mnogiej, np. /ideas.
-Typy i komponenty Reacta używają PascalCase, np. IdeaForm.
+Endpointy używają rzeczowników w liczbie mnogiej, np. /product-items.
+Klasy, interfejsy i komponenty Angulara używają PascalCase, np. ProductItemFormComponent.
 Stałe enumów używają SCREAMING_SNAKE_CASE, np. IN_REVIEW.

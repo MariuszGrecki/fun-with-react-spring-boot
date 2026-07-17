@@ -2,385 +2,129 @@
 
 ## Cel dnia 4
 
-Celem dnia 4 było ustalenie docelowej architektury frontendu przed migracją na React + TypeScript + Mantine.
+Celem dnia 4 jest ustalenie architektury Angulara przed implementacją widoków.
 
 Najważniejsza decyzja:
 
-> Frontend dzielimy podobnie jak backend: po funkcjach domenowych, a nie po typach plików. `productItems` i `sprints` są osobnymi feature'ami, a `shared` zawiera tylko rzeczy naprawdę wspólne.
+> Frontend dzielimy po funkcjach domenowych, a nie po technicznych typach plików. `product-items` i `sprints` są osobnymi feature'ami, a `shared` zawiera wyłącznie rzeczy niezależne od domeny.
 
 ## Stack docelowy
 
 ```txt
-React
+Angular (standalone components)
 TypeScript
-Mantine
-Vite
+Angular Material
+Angular Router
+HttpClient i RxJS
+Reactive Forms
 ```
-
-Na dziś projekt ma jeszcze prosty frontend JavaScript. Migrację na TypeScript i Mantine wykonamy później jako osobny dzień.
 
 ## Docelowa struktura katalogów
 
 ```txt
-frontend/src
-├── app
-│   ├── App.tsx
-│   ├── AppProviders.tsx
-│   └── routes.tsx
-├── api
-│   ├── httpClient.ts
-│   └── apiError.ts
+frontend/src/app
+├── core
+│   ├── api
+│   │   ├── api-error.ts
+│   │   └── http-error.interceptor.ts
+│   └── config
+│       └── api.config.ts
 ├── features
-│   ├── productItems
-│   │   ├── api
-│   │   │   └── productItemsApi.ts
-│   │   ├── components
-│   │   │   ├── ProductItemTable.tsx
-│   │   │   ├── ProductItemForm.tsx
-│   │   │   ├── ProductItemDetails.tsx
-│   │   │   ├── ProductItemStageBadge.tsx
-│   │   │   └── ProductItemScoreBadge.tsx
-│   │   ├── hooks
-│   │   │   └── useProductItems.ts
+│   ├── product-items
+│   │   ├── data-access
+│   │   │   └── product-items-api.service.ts
+│   │   ├── models
+│   │   │   └── product-item.model.ts
 │   │   ├── pages
-│   │   │   ├── ProductItemsPage.tsx
-│   │   │   └── ProductItemDetailsPage.tsx
-│   │   └── types.ts
+│   │   │   ├── product-items-page.component.ts
+│   │   │   └── product-item-details-page.component.ts
+│   │   └── ui
+│   │       ├── product-item-form.component.ts
+│   │       ├── product-item-table.component.ts
+│   │       └── product-item-stage-badge.component.ts
 │   ├── sprints
-│   │   ├── api
-│   │   │   └── sprintsApi.ts
-│   │   ├── components
-│   │   │   ├── SprintBoard.tsx
-│   │   │   ├── SprintColumn.tsx
-│   │   │   ├── SprintItemCard.tsx
-│   │   │   └── SprintForm.tsx
-│   │   ├── hooks
-│   │   │   └── useSprints.ts
+│   │   ├── data-access
+│   │   │   └── sprints-api.service.ts
+│   │   ├── models
+│   │   │   └── sprint.model.ts
 │   │   ├── pages
-│   │   │   └── SprintsPage.tsx
-│   │   └── types.ts
+│   │   │   └── sprints-page.component.ts
+│   │   └── ui
+│   │       ├── sprint-board.component.ts
+│   │       └── sprint-form.component.ts
 │   └── dashboard
-│       ├── components
-│       │   └── DashboardStats.tsx
-│       ├── pages
-│       │   └── DashboardPage.tsx
-│       └── types.ts
+│       └── pages/dashboard-page.component.ts
 ├── shared
-│   ├── components
-│   │   ├── EmptyState.tsx
-│   │   ├── ErrorAlert.tsx
-│   │   └── LoadingState.tsx
 │   ├── layout
-│   │   ├── AppShellLayout.tsx
-│   │   └── Navigation.tsx
-│   └── utils
-│       ├── dateFormat.ts
-│       └── scoreFormat.ts
-└── main.tsx
+│   │   ├── app-shell.component.ts
+│   │   └── navigation.component.ts
+│   └── ui
+│       ├── empty-state.component.ts
+│       ├── error-alert.component.ts
+│       └── loading-state.component.ts
+├── app.component.ts
+├── app.config.ts
+└── app.routes.ts
 ```
 
-## Mapowanie backend -> frontend
+## Zasady odpowiedzialności
+
+- `core` zawiera singletony aplikacji: konfigurację API, interceptory i globalną obsługę błędów.
+- `features` zawiera logikę oraz widoki konkretnej domeny.
+- `data-access` zawiera serwisy komunikujące się z REST API; komponenty nie używają `HttpClient` bezpośrednio.
+- `ui` zawiera komponenty prezentacyjne danego feature'a.
+- `shared` zawiera tylko neutralne komponenty i layout, bez wiedzy o Product Itemach oraz sprintach.
+
+Mapowanie backendu na frontend:
 
 ```txt
-backend productitem -> frontend features/productItems
-backend sprint      -> frontend features/sprints
-backend shared      -> frontend shared
-backend config      -> frontend app / api
+backend productitem -> features/product-items
+backend sprint      -> features/sprints
+backend shared      -> shared
+backend config      -> core
 ```
 
-Nie będzie to idealne 1:1, bo frontend ma UI, routing, layout i hooki, ale mentalny podział zostaje podobny.
+## Komunikacja z API
 
-## app
-
-`app` zawiera składanie całej aplikacji.
-
-Odpowiedzialność:
-
-- główny `App`,
-- providery Mantine,
-- routing,
-- globalny layout,
-- konfiguracja aplikacji.
-
-Przykłady:
-
-```txt
-App.tsx
-AppProviders.tsx
-routes.tsx
-```
-
-`app` nie powinien zawierać logiki domenowej Product Itemów ani sprintów.
-
-## api
-
-`api` zawiera niskopoziomową komunikację HTTP.
-
-Przykłady:
-
-```txt
-httpClient.ts
-apiError.ts
-```
-
-`httpClient.ts` odpowiada za:
-
-- bazowy URL API,
-- nagłówki,
-- parsowanie odpowiedzi,
-- obsługę błędów HTTP,
-- wspólną funkcję `request`.
-
-Nie trzymamy tu funkcji domenowych typu:
-
-```txt
-getProductItems()
-createSprint()
-```
-
-One należą do feature'ów:
-
-```txt
-features/productItems/api/productItemsApi.ts
-features/sprints/api/sprintsApi.ts
-```
-
-## features/productItems
-
-Feature odpowiedzialny za Product Itemy.
-
-Obejmuje:
-
-- listę itemów,
-- szczegóły itemu,
-- formularze,
-- typy,
-- API product itemów,
-- komponenty związane tylko z product itemami.
-
-Przykładowe typy:
+Każdy feature posiada własny serwis API, na przykład `ProductItemsApiService`. Serwis zwraca typowane obserwowalne odpowiedzi HTTP i zna wyłącznie kontrakt REST, nie encje JPA.
 
 ```ts
-export type ProductItemType =
-  | 'FEATURE'
-  | 'BUG'
-  | 'IMPROVEMENT'
-  | 'TECH_DEBT'
-  | 'RESEARCH';
-
-export type ProductItemStage =
-  | 'CONCEPT'
-  | 'BACKLOG'
-  | 'ROADMAP'
-  | 'ARCHIVED';
-
-export type RoadmapColumn =
-  | 'NOW'
-  | 'NEXT'
-  | 'LATER'
-  | 'DONE';
-```
-
-`features/productItems` może używać:
-
-- `api/httpClient`,
-- `shared/components`,
-- `shared/utils`.
-
-Nie powinno importować komponentów z `features/sprints`.
-
-## features/sprints
-
-Feature odpowiedzialny za sprinty i sprint board.
-
-Obejmuje:
-
-- listę sprintów,
-- aktywny sprint,
-- sprint board,
-- karty sprint itemów,
-- API sprintów,
-- typy sprintowe.
-
-Przykładowe typy:
-
-```ts
-export type SprintStatus =
-  | 'PLANNED'
-  | 'ACTIVE'
-  | 'COMPLETED';
-
-export type SprintBoardStatus =
-  | 'TODO'
-  | 'IN_PROGRESS'
-  | 'REVIEW'
-  | 'DONE';
-```
-
-Jeśli sprint musi pokazać podstawowe dane Product Itema, używamy typu kontraktowego albo DTO z API sprintów, np.:
-
-```ts
-export type SprintItem = {
-  id: number;
-  productItemId: number;
-  productItemTitle: string;
-  productItemSummary: string;
-  boardStatus: SprintBoardStatus;
-};
-```
-
-Nie importujemy `ProductItemTable` ani innych komponentów product itemów do sprintów.
-
-## features/dashboard
-
-Dashboard agreguje dane z różnych obszarów, ale nie powinien przejmować ich logiki.
-
-Dashboard może pobierać gotowe DTO z backendu:
-
-```txt
-GET /api/dashboard
-```
-
-albo tymczasowo składać dane z kilku endpointów.
-
-Na MVP preferujemy prosty wariant. Jeśli dashboard zacznie robić zbyt dużo, przeniesiemy agregację do backendu.
-
-## shared
-
-`shared` zawiera tylko rzeczy naprawdę wspólne.
-
-Dozwolone:
-
-```txt
-EmptyState
-ErrorAlert
-LoadingState
-AppShellLayout
-Navigation
-dateFormat
-scoreFormat
-```
-
-Niedozwolone:
-
-```txt
-ProductItemTable
-SprintBoard
-ProductItemForm
-SprintItemCard
-```
-
-Zasada:
-
-> Jeśli komponent zna domenę Product Itemów albo sprintów, nie jest shared.
-
-## Komunikacja między feature'ami
-
-Feature'y nie powinny importować od siebie komponentów.
-
-Nie robimy:
-
-```ts
-// features/sprints/components/SprintItemCard.tsx
-import { ProductItemStageBadge } from '../../productItems/components/ProductItemStageBadge';
-```
-
-Lepsze opcje:
-
-1. Przenieść naprawdę neutralny komponent do `shared`.
-2. Zduplikować mały, specyficzny komponent, jeśli zachowania są różne.
-3. Użyć DTO z backendu, które zawiera dane potrzebne dla sprintu.
-
-Feature może importować typ z innego feature'a tylko ostrożnie. Jeśli typ staje się kontraktem API używanym w kilku miejscach, rozważamy:
-
-```txt
-shared/types
-```
-
-ale nie robimy tego przedwcześnie.
-
-## DTO i typy
-
-Frontend typuje odpowiedzi API osobno od wewnętrznych komponentów, jeśli będzie taka potrzeba.
-
-Na start możemy trzymać typy w:
-
-```txt
-features/productItems/types.ts
-features/sprints/types.ts
-```
-
-Przykład:
-
-```ts
-export type ProductItemListResponse = {
+export interface ProductItemListResponse {
   id: number;
   title: string;
   summary: string;
   type: ProductItemType;
   stage: ProductItemStage;
   score: number | null;
-};
+}
 ```
 
-Nie zakładamy, że typ frontendu musi być identyczny z encją JPA. Frontend zna API DTO, nie bazę danych.
+Globalny interceptor przekształca błędy HTTP do wspólnego typu `ApiError`. Komponent strony obsługuje stan ładowania, błąd, pustą listę i sukces zapisu.
 
-## Mantine
+## Formularze i UI
 
-Mantine używamy jako głównej biblioteki UI.
+Formularze tworzymy przez Reactive Forms. Angular Material zapewnia podstawowe elementy: `mat-form-field`, `mat-select`, `mat-table`, `mat-dialog`, `mat-chip` i `MatSnackBar`.
 
-Zastosowania:
-
-- `AppShell` dla layoutu,
-- `Table` albo `Card` dla list,
-- `Modal` dla formularzy,
-- `Select` i `SegmentedControl` dla statusów,
-- `Badge` dla stage, type i priority,
-- `Notification` dla sukcesów i błędów,
-- `TextInput`, `Textarea`, `NumberInput` dla formularzy.
-
-Nie budujemy własnego design systemu na starcie. Używamy gotowych komponentów Mantine i trzymamy layout prosty.
+Nie tworzymy własnego design systemu na MVP. Drag and drop przez Angular CDK jest opcjonalny i nie blokuje ukończenia MVP.
 
 ## Routing
 
-Docelowe trasy:
-
 ```txt
 /                       dashboard
-/product-items          lista product itemów
-/product-items/:id      szczegóły product itemu
+/product-items          lista Product Itemów
+/product-items/:id      szczegóły Product Itemu
 /roadmap                roadmapa
 /sprints                sprinty
-/sprints/:id            szczegóły sprintu / board
+/sprints/:id            szczegóły sprintu i board
 ```
 
-Na MVP możemy zacząć od jednej strony i prostych zakładek, ale docelowo ta struktura jest czytelniejsza.
-
-## Obsługa błędów i loadingu
-
-Każdy feature powinien obsługiwać:
-
-- loading,
-- error,
-- empty state,
-- success notification po zapisie.
-
-Wspólne komponenty:
-
-```txt
-shared/components/LoadingState.tsx
-shared/components/ErrorAlert.tsx
-shared/components/EmptyState.tsx
-```
+Każdy feature jest ładowany leniwie przez `loadComponent` lub `loadChildren`, gdy pojawi się więcej niż jedna strona. Dzięki temu `app.routes.ts` pozostaje prosty, a moduły domenowe niezależne.
 
 ## Decyzje dnia 4
 
-1. Frontend dzielimy po feature'ach, podobnie jak backend.
-2. `features/productItems` odpowiada za Product Itemy.
-3. `features/sprints` odpowiada za sprinty i sprint board.
-4. `shared` zawiera tylko komponenty i utilsy niezależne od domeny.
-5. `api/httpClient.ts` jest niskopoziomowy, a domenowe API siedzi w feature'ach.
-6. Feature'y nie importują od siebie komponentów.
-7. Mantine jest podstawą UI.
-8. Frontend używa DTO z API, nie encji JPA.
-9. Dzień 4 nie wymaga jeszcze migracji kodu na TypeScript; dokumentuje docelową strukturę.
+1. Używamy Angulara ze standalone components; nie tworzymy na start `NgModule`.
+2. Feature'y są podzielone według domeny: `product-items`, `sprints`, `dashboard`.
+3. Serwisy `data-access` są jedynym miejscem wywołującym REST API.
+4. `core` przechowuje konfigurację i globalne mechanizmy, a `shared` neutralne UI.
+5. Angular Material jest podstawą UI, a Reactive Forms podstawą formularzy.
+6. Frontend używa DTO API, nie encji JPA.

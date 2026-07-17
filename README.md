@@ -46,13 +46,13 @@ Po MVP można dodać AI, integracje, role, publiczne API i bardziej rozbudowane 
 
 | Warstwa | Technologia |
 | --- | --- |
-| Frontend | React, TypeScript, Mantine |
+| Frontend | Angular, TypeScript, Angular Material |
 | Backend | Java, Spring Boot, Spring Web, Spring Data JPA |
 | Baza danych | PostgreSQL |
-| UI | Mantine components, Mantine forms, Mantine notifications |
-| Drag and drop | `@dnd-kit` |
+| UI | Angular Material, Reactive Forms, powiadomienia `MatSnackBar` |
+| Drag and drop | opcjonalnie Angular CDK DragDrop |
 | Testy backendu | JUnit, Spring Boot Test, MockMvc |
-| Testy frontendu | Vitest, React Testing Library |
+| Testy frontendu | Jasmine/Karma lub Vitest, Angular Testing Library |
 | E2E | Playwright |
 | CI/CD | GitHub Actions |
 | Uruchamianie lokalne | Docker Compose |
@@ -89,7 +89,7 @@ docker compose logs -f frontend
 Projekt będzie rozwijany małymi krokami:
 
 1. Ustalenie modelu danych dla Product Plannera.
-2. Przebudowa frontendu na React + TypeScript + Mantine.
+2. Przebudowa frontendu na Angular + TypeScript + Angular Material.
 3. Implementacja Product Inbox.
 4. Dodanie backlogu i scoringu.
 5. Dodanie roadmapy i sprintów.
@@ -106,7 +106,7 @@ Priorytetem jest zrozumiały kod, debugowanie i realny przepływ danych przez ca
 | [doc/mvp.md](doc/mvp.md) | Przycięty zakres MVP, estymacje i kryteria ukończenia. |
 | [doc/domain-model.md](doc/domain-model.md) | Model domeny, tabele, relacje, statusy i decyzje MVP. |
 | [doc/backend-architecture.md](doc/backend-architecture.md) | Architektura backendu, moduły i zasady komunikacji między modułami. |
-| [doc/frontend-architecture.md](doc/frontend-architecture.md) | Architektura frontendu, feature’y, shared, API client i Mantine. |
+| [doc/frontend-architecture.md](doc/frontend-architecture.md) | Architektura frontendu Angular, feature’y, shared, klient HTTP i Angular Material. |
 | [doc/plan-nauki-90-dni.md](doc/plan-nauki-90-dni.md) | Plan nauki i budowy MVP na 90 dni. |
 | [doc/fiszki.md](doc/fiszki.md) | Fiszki tworzone po kolejnych dniach pracy. |
 

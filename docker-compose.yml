@@ -38,16 +38,14 @@ services:
     build:
       context: ./frontend
     container_name: learning-tracker-frontend
-    environment:
-      VITE_API_URL: http://localhost:18081/api
-      CHOKIDAR_USEPOLLING: "true"
     ports:
       - "5173:5173"
     volumes:
       - ./frontend:/app
-      - /app/node_modules
+      - frontend-node-modules:/app/node_modules
     depends_on:
       - backend
 
 volumes:
   postgres-data:
+  frontend-node-modules:

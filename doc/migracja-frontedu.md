@@ -1,27 +1,23 @@
-# Plan migracji frontendu
+# Plan migracji frontendu na Angular
 
 ## Cel
 
-Przejść z React JavaScript na React + TypeScript + Mantine,
-bez psucia działającego połączenia z backendem Spring Boot.
-
-## Etapy
-
-1. Dodać obsługę TypeScript w Vite.
-2. Zmienić pliki `.jsx` i `.js` na `.tsx` oraz `.ts`.
-3. Dodać typy danych API: `Topic` i `TopicStatus`.
-4. Podzielić `App` na komponenty funkcjonalne.
-5. Dodać Mantine Provider oraz zastąpić podstawowe elementy UI komponentami Mantine.
+Zastąpić frontend React aplikacją Angular, bez psucia połączenia z backendem Spring Boot.
 
 ## Zasada bezpieczeństwa
 
-Po każdym etapie aplikacja ma się budować i nadal pobierać dane
-z endpointu `GET /api/topics`.
+Najpierw tworzymy niezależny szkielet Angulara, a dopiero po jego pomyślnym uruchomieniu usuwamy kod Reacta. Po każdym etapie sprawdzamy build oraz połączenie z backendem.
 
-## Struktura docelowa
+## Etapy
 
-src/
-  app/
-  api/
-  features/inbox/
-  shared/
+1. Utworzyć aplikację Angular ze standalone components i routingiem.
+2. Skonfigurować adres API w środowisku oraz `HttpClient`.
+3. Dodać `ProductItemsApiService` i typowane DTO dla `/api/product-items`.
+4. Zbudować pierwszy widok Product Inbox z loadingiem, błędem i pustym stanem.
+5. Dodać Reactive Form do tworzenia Product Itemu.
+6. Dodać Angular Material: layout, pola formularza, tabelę, dialog i powiadomienia.
+7. Dopiero po potwierdzeniu działania usunąć zależności i pliki Reacta.
+
+## Kryterium ukończenia
+
+Frontend buduje się poleceniem `npm run build`, uruchamia przez Docker Compose i poprawnie pobiera dane z backendowego endpointu `/api/product-items`.

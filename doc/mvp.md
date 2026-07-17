@@ -20,7 +20,7 @@ Zakładamy około **90 godzin pracy**, czyli 90 dni po około 1 godzinie.
 
 To nie jest 90 godzin ciągłego kodowania. W tym czasie mieszczą się:
 
-- nauka React + TypeScript + Mantine,
+- nauka Angular + TypeScript + Angular Material,
 - nauka Spring Boot i JPA,
 - debugowanie,
 - refaktor,
@@ -49,7 +49,7 @@ Szacowany czas: **4-6h**
 
 Uzasadnienie:
 
-Dashboard spina aplikację i daje dobre miejsce do ćwiczenia pobierania danych, agregacji i prezentacji w Mantine.
+Dashboard spina aplikację i daje dobre miejsce do ćwiczenia pobierania danych, agregacji i prezentacji w Angular Material.
 
 ### 2. Product Inbox
 

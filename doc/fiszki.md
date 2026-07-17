@@ -50,4 +50,24 @@ WAŻNE - Formatowanie tekstu:
   {
     "explanation": "Aby użyć tego podejścia:\n1) Zainstaluj zależności\n2) Skonfiguruj plik\n3) Uruchom komendę\n\nPrzykład kodu:\n```java\npublic class Example {\n    // kod\n}\n```"
   }
-``
+```
+
+## Dzień 11
+
+```json
+[
+  {
+    "type": "MCQ",
+    "text": "Dlaczego w encji JPA warto użyć adnotacji `@Enumerated(EnumType.STRING)` dla pola typu enum?",
+    "explanation": "Zapis tekstowy przechowuje nazwę wartości enuma, np. `FEATURE`, zamiast jej pozycji liczbowej. Dzięki temu zmiana kolejności wartości enuma nie zmienia znaczenia danych zapisanych w bazie.",
+    "choices": [
+      { "letter": "A", "text": "Aby zapisać nazwę wartości enuma jako tekst w bazie danych.", "isCorrect": true },
+      { "letter": "B", "text": "Aby automatycznie utworzyć identyfikator rekordu.", "isCorrect": false },
+      { "letter": "C", "text": "Aby wymusić, że pole nie może mieć wartości null.", "isCorrect": false },
+      { "letter": "D", "text": "Aby utworzyć osobną tabelę dla każdej wartości enuma.", "isCorrect": false }
+    ],
+    "bookName": null,
+    "bookAuthor": null
+  }
+]
+```

@@ -687,7 +687,7 @@ Dla zespołów produktowych.
 
 Rekomendowany stack:
 
-* Frontend: React + TypeScript,
+* Frontend: Angular + TypeScript,
 * Backend: Spring Boot,
 * Baza danych: PostgreSQL,
 * Cache: Redis,
@@ -701,7 +701,7 @@ Rekomendowany stack:
 
 Najbardziej sensowny stack:
 
-**React + Spring Boot + PostgreSQL + Redis**
+**Angular + Spring Boot + PostgreSQL + Redis**
 
 Ten stack pasuje do produktu, który ma być stabilny, szybki i bardziej złożony od prostego feedback boarda.
 

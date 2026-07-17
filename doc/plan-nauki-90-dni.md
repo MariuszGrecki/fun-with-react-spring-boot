@@ -1,15 +1,15 @@
 # Plan Nauki na 90 Dni
 
-Plan zakłada około 1 godzinę dziennie. Celem jest zbudowanie realnego MVP aplikacji **Product Planner** oraz nabranie biegłości w React, TypeScript, Mantine, Spring Boot, PostgreSQL, testach, debugowaniu i CI/CD.
+Plan zakłada około 1 godzinę dziennie. Celem jest zbudowanie realnego MVP aplikacji **Product Planner** oraz nabranie biegłości w Angularze, TypeScripcie, Angular Material, Spring Boot, PostgreSQL, testach, debugowaniu i CI/CD.
 
 ## Stack Docelowy
 
 ```txt
-React + TypeScript + Mantine
+Angular + TypeScript + Angular Material
 Spring Boot
 PostgreSQL
 Docker Compose
-JUnit / MockMvc / Vitest / React Testing Library / Playwright
+JUnit / MockMvc / Jasmine-Karma lub Vitest / Angular Testing Library / Playwright
 GitHub Actions
 ```
 
@@ -61,10 +61,10 @@ Każdy dzień:
 | --- | --- | --- |
 | 1-10 | Pivot i fundamenty | Przestawić projekt na Product Planner i zrozumieć architekturę. |
 | 11-20 | Backend MVP | Model danych, REST API, walidacja i błędy. |
-| 21-30 | React + TypeScript | Przebudowa frontendu, typowanie i klient API. |
-| 31-40 | Mantine UI | Layout aplikacji, dashboard, formularze, tabele i modale. |
+| 21-30 | Angular fundamenty | Szkielet Angulara, routing, typowanie i klient API. |
+| 31-40 | Angular Material UI | Layout aplikacji, dashboard, formularze, tabele i dialogi. |
 | 41-50 | Backlog i scoring | Priorytetyzacja, filtry, sortowanie, statusy. |
-| 51-60 | Roadmapa i sprinty | Roadmap board, sprint board, drag and drop. |
+| 51-60 | Roadmapa i sprinty | Roadmap board i sprint board; drag and drop jest opcjonalny. |
 | 61-70 | Spec Builder i aktywność | Specyfikacje, komentarze, timeline i stabilizacja przepływu. |
 | 71-80 | Testy | Testy backendu, frontendu i pierwszy E2E. |
 | 81-90 | CI/CD i finalizacja | GitHub Actions, dokumentacja, polish i demo. |
@@ -74,17 +74,18 @@ Każdy dzień:
 | Status | Dzień | Temat | Zadanie |
 | --- | --- | --- | --- |
 | [x] | 1 | Product Planner MVP | Przejdź przez `doc/idea.md` i zaznacz, co wchodzi do MVP, a co odkładamy. |
-| [x] | 2 | Model domeny | Zaprojektuj encje: `Idea`, `BacklogItem`, `RoadmapItem`, `Sprint`, `SprintTask`. |
+| [x] | 2 | Model domeny | Zaprojektuj `ProductItem`, jego etapy oraz `Sprint` i `SprintItem`. |
 | [x] | 3 | Architektura backendu | Ustal moduły backendu: productitem, sprint, shared, config oraz komunikację między modułami przez facade. |
-| [x] | 4 | Architektura frontendu | Ustal strukturę React + TypeScript + Mantine: app, api, features, shared oraz zasady komunikacji między featureami. |
+| [x] | 4 | Architektura frontendu | Ustal strukturę Angular: core, features, shared, data-access oraz zasady komunikacji między feature'ami. |
 | [x] | 5 | Docker i środowisko | Sprawdź Compose, porty, zmienne środowiskowe i logi. |
 | [x] | 6 | REST flow | Przećwicz request od frontendu do Spring Boota i bazy. |
 | [x] | 7 | Debugowanie startowe | Celowo wywołaj błąd API i odczytaj go w Network tab oraz logach backendu. |
-| [x] | 8 | Decyzja o migracji frontu | Przygotuj plan przejścia obecnego frontu na TypeScript i Mantine. |
+| [x] | 8 | Decyzja o migracji frontu | Przygotuj plan przejścia obecnego frontu React na Angular. |
 | [x] | 9 | README i konwencje | Ustal nazwy statusów, typów i endpointów. |
 | [x] | 10 | Review fundamentów | Opowiedz przepływ danych własnymi słowami. |
-| [ ] | 11 | Encja Idea | Dodaj backendowy model pomysłu z tytułem, opisem, typem i statusem. |
-| [ ] | 12 | Repozytorium Idea | Dodaj repozytorium i serwis dla Product Inbox. |
+| [x] | 11 | Encja ProductItem | Dodaj model Product Itemu z tytułem, summary, typem i etapem. |
+| [ ] | 11b | Flyway i migracje bazy | Wyczyść lokalną bazę, dodaj Flyway oraz pierwszą migrację SQL tworzącą tabelę `product_items`. |
+| [ ] | 12 | Repozytorium ProductItem | Dodaj repozytorium i serwis dla Product Inbox. |
 | [ ] | 13 | Kontroler Inbox | Dodaj endpointy listowania i tworzenia pomysłów. |
 | [ ] | 14 | Walidacja | Dodaj walidację tytułu, typu i opisu. |
 | [ ] | 15 | Obsługa błędów | Dodaj spójny format błędów API. |
@@ -93,24 +94,24 @@ Każdy dzień:
 | [ ] | 18 | Filtrowanie backendu | Dodaj filtrowanie po statusie i typie. |
 | [ ] | 19 | Sortowanie backendu | Dodaj sortowanie po dacie utworzenia i priorytecie. |
 | [ ] | 20 | Review backendu | Sprawdź endpointy przez `curl` i logi. |
-| [ ] | 21 | TypeScript start | Przebuduj frontend na TypeScript albo utwórz równoległy szkielet TS. |
-| [ ] | 22 | Typ Idea | Zdefiniuj typy `Idea`, `IdeaType`, `IdeaStatus`. |
-| [ ] | 23 | API client | Napisz typowane funkcje do pobierania i tworzenia pomysłów. |
+| [x] | 21 | Angular start | Utwórz szkielet Angulara ze standalone components i routingiem. |
+| [ ] | 22 | Model ProductItem | Zdefiniuj interfejsy `ProductItem`, `ProductItemType`, `ProductItemStage`. |
+| [ ] | 23 | API service | Napisz `ProductItemsApiService` do pobierania i tworzenia Product Itemów. |
 | [ ] | 24 | Lista pomysłów | Wyświetl Product Inbox z danych z backendu. |
-| [ ] | 25 | Formularz pomysłu | Dodaj formularz tworzenia pomysłu w TypeScript. |
-| [ ] | 26 | Typowanie eventów | Przećwicz typy formularzy, submitu i selectów. |
+| [ ] | 25 | Formularz Product Itemu | Dodaj Reactive Form tworzenia Product Itemu. |
+| [ ] | 26 | Reactive Forms | Przećwicz walidację, submit i select w formularzu Angulara. |
 | [ ] | 27 | Error handling | Pokaż błąd API w UI w kontrolowany sposób. |
 | [ ] | 28 | Loading states | Dodaj loading dla pobierania i zapisu. |
-| [ ] | 29 | Refaktor frontu | Wyciągnij komponenty: InboxList, IdeaForm, StatusBadge. |
-| [ ] | 30 | Review TypeScript | Spisz trzy sytuacje, gdzie TypeScript pomógł. |
-| [ ] | 31 | Mantine setup | Dodaj Mantine Provider, theme i podstawowy layout. |
+| [ ] | 29 | Refaktor frontu | Wyciągnij komponenty: ProductItemList, ProductItemForm, StageBadge. |
+| [ ] | 30 | Review Angulara | Spisz trzy sytuacje, gdzie Angular lub TypeScript pomógł. |
+| [ ] | 31 | Angular Material | Dodaj Angular Material, theme i podstawowy layout. |
 | [ ] | 32 | App shell | Zbuduj layout z sidebar, header i główną treścią. |
 | [ ] | 33 | Dashboard v1 | Dodaj kafle: total ideas, backlog, active sprint, done. |
-| [ ] | 34 | Mantine form | Przenieś formularz pomysłu na komponenty Mantine. |
+| [ ] | 34 | Material form | Użyj `mat-form-field`, `mat-select` i walidacji w formularzu. |
 | [ ] | 35 | Notifications | Dodaj powiadomienia po sukcesie i błędzie. |
 | [ ] | 36 | Modal | Dodaj modal do tworzenia nowego pomysłu. |
-| [ ] | 37 | Table | Wyświetl inbox w Mantine Table albo prostych kartach. |
-| [ ] | 38 | Select filters | Dodaj filtry statusu i typu z Mantine Select. |
+| [ ] | 37 | Table | Wyświetl inbox w `mat-table` albo prostych kartach. |
+| [ ] | 38 | Select filters | Dodaj filtry etapu i typu z `mat-select`. |
 | [ ] | 39 | Empty states | Dodaj stany puste dla list i filtrów. |
 | [ ] | 40 | Review UI | Sprawdź, czy UI jest czytelny bez ręcznego stylowania. |
 | [ ] | 41 | Backlog model | Dodaj backendowy model backlog item albo status przeniesienia do backlogu. |
@@ -133,8 +134,8 @@ Każdy dzień:
 | [ ] | 58 | Sprint tasks | Dodaj zadania sprintu powiązane z backlog itemem. |
 | [ ] | 59 | Sprint Board | Dodaj kolumny To Do, In Progress, Review, Done. |
 | [ ] | 60 | Review roadmapy i sprintów | Przejdź flow od backlogu do sprint boarda. |
-| [ ] | 61 | Drag and drop | Dodaj `@dnd-kit` dla sprint boarda albo roadmapy. |
-| [ ] | 62 | Persist order | Zapisuj status po przeciągnięciu zadania. |
+| [ ] | 61 | Drag and drop (stretch) | Opcjonalnie dodaj Angular CDK DragDrop dla boardu albo roadmapy. |
+| [ ] | 62 | Persist order (stretch) | Jeśli wdrożono drag and drop, zapisuj status i kolejność po przeciągnięciu. |
 | [ ] | 63 | Spec model | Dodaj specyfikację: problem, goal, user story, acceptance criteria. |
 | [ ] | 64 | Spec Builder UI | Dodaj formularz specyfikacji dla backlog itemu. |
 | [ ] | 65 | Comments model | Dodaj komentarze do pomysłu albo backlog itemu. |
@@ -148,7 +149,7 @@ Każdy dzień:
 | [ ] | 73 | Test walidacji | Przetestuj 400 dla pustego tytułu. |
 | [ ] | 74 | Test repozytorium | Dodaj test zapisu encji w JPA. |
 | [ ] | 75 | Test score | Przetestuj wyliczanie score. |
-| [ ] | 76 | Vitest setup | Dodaj Vitest i React Testing Library. |
+| [ ] | 76 | Testy Angulara | Skonfiguruj Jasmine/Karma lub Vitest i Angular Testing Library. |
 | [ ] | 77 | Test komponentu | Przetestuj renderowanie pustego inboxa. |
 | [ ] | 78 | Test formularza | Przetestuj wpisanie tytułu i submit. |
 | [ ] | 79 | Mock API | Zamockuj klienta API w teście frontendu. |
@@ -170,7 +171,7 @@ Po każdym dniu dopisujemy jedną fiszkę do `doc/fiszki.md`.
 
 Fiszka powinna dotyczyć mechanizmu, a nie tylko konkretnego fragmentu aplikacji. Przykłady:
 
-- czym różni się controlled input od uncontrolled input w React,
+- czym różni się Reactive Form od template-driven form w Angularze,
 - po co typować odpowiedź API w TypeScript,
 - czym różni się kontroler od serwisu w Spring Boot,
 - jak działa walidacja requestu przez `@Valid`,
