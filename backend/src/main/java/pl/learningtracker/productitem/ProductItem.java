@@ -31,6 +31,8 @@ public class ProductItem {
 
     private Instant createdAt = Instant.now();
 
+    private Instant updatedAt = Instant.now();
+
     protected ProductItem() {
 
     }
@@ -63,5 +65,9 @@ public class ProductItem {
 
     public Instant getCreatedAt() {
         return createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
     }
 }
