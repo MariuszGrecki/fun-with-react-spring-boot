@@ -84,7 +84,7 @@ Każdy dzień:
 | [x] | 9 | README i konwencje | Ustal nazwy statusów, typów i endpointów. |
 | [x] | 10 | Review fundamentów | Opowiedz przepływ danych własnymi słowami. |
 | [x] | 11 | Encja ProductItem | Dodaj model Product Itemu z tytułem, summary, typem i etapem. |
-| [ ] | 11b | Flyway i migracje bazy | Wyczyść lokalną bazę, dodaj Flyway oraz pierwszą migrację SQL tworzącą tabelę `product_items`. |
+| [x] | 11b | Flyway i migracje bazy | Wyczyść lokalną bazę, dodaj Flyway oraz pierwszą migrację SQL tworzącą tabelę `product_items`. |
 | [ ] | 12 | Repozytorium ProductItem | Dodaj repozytorium i serwis dla Product Inbox. |
 | [ ] | 13 | Kontroler Inbox | Dodaj endpointy listowania i tworzenia pomysłów. |
 | [ ] | 14 | Walidacja | Dodaj walidację tytułu, typu i opisu. |
